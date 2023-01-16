@@ -10,3 +10,8 @@ export const StyledApp = styled.div`
   padding-top: 30px;
   padding-left: 30px;
 `;
+
+export const Title = styled.h1`
+  font-size: 26px;
+    color: #516aed;
+`

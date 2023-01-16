@@ -1,6 +1,9 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
-import { StyledApp } from './App.styled';
+import { StyledApp, Title } from './App.styled';
+import { ContactForm } from './Form/Form';
+import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
+
 
 export class App extends Component {
   state = {
@@ -11,61 +14,45 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  
-filterContacts = event => {
-  const { contacts, filter } = this.state;
-  const normalizedFilter = filter.toLowerCase();
-  return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
-};
+  filterContacts = event => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
 
-onFilterChange = event => {
-  const { value } = event.target;
-  this.setState({ filter: value });
-};
+  onFilterChange = event => {
+    const { value } = event.target;
+    this.setState({ filter: value });
+  };
+
+addContact = (newContact) => {
+  console.log(newContact)
+}
+
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
+  };
+
   render() {
-    const filteredContacts = this.filterContacts();
+
     return (
       <StyledApp>
-        <form>
-        <label>
-          Name
-          <input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            
-          />
-        </label>
+        <Title>Phonebook</Title>
 
-        <label>
-          Number
-          <input
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
-        <button type="button">Add contact</button>
+        <ContactForm addContact={this.addContact}></ContactForm>
 
-        <p>Contacts</p>
-        <input name={this.state.filter} type="text" onChange={this.onFilterChange}/>
-        <ul>
-          {filteredContacts.map(contact => {
-            return <li key={nanoid()} >{contact.name} : {contact.number}</li>;
-          })}
-        </ul>
-        </form>
-        
+        <Title>Contacts</Title>
+
+        <Filter name={this.state.filter} onFilterChange={this.onFilterChange}></Filter>
+
+        <ContactList contacts={this.filterContacts()} onDelete={this.deleteContact}></ContactList>
+
       </StyledApp>
     );
   }
