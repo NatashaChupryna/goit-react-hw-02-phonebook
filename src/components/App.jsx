@@ -29,7 +29,6 @@ onFilterChange = event => {
   this.setState({ filter: value });
 };
   render() {
-    const сontacts = this.state.contacts;
     const filteredContacts = this.filterContacts();
     return (
       <StyledApp>
