@@ -50,10 +50,10 @@
 // Версія з Formik
 
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik} from 'formik';
 import { ContactsForm, Button, NameInput, NumberInput } from './Form.styled';
 
-export const ContactForm = ({ onSubmitForm }) => {
+export const ContactForm = () => {
   const initialValues = {
     name: '',
     number: '',
@@ -64,9 +64,9 @@ export const ContactForm = ({ onSubmitForm }) => {
     resetForm();
   };
  
-  const onSubmit = (event) =>{
-event.preventDefault();
-  }
+//   const onSubmit = (event) =>{
+// event.preventDefault();
+//   }
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
