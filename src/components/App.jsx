@@ -20,9 +20,9 @@ export class App extends Component {
 
 filterContacts = event => {
     const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
+    const normalizedFilter = filter.toUpperCase();
+    return contacts.filter(contact =>  { 
+      return contact.name.toUpperCase().includes(normalizedFilter)}
     );
   };
 
@@ -31,17 +31,17 @@ onFilterChange = event => {
     this.setState({ filter: value });
   };
 
- addContact = (name, number) => {
-  if(this.state.contacts.find(contact => contact.name === name)){
-    return alert('${contact.name} is already in contacts') 
+ addContact = ({name, number}) => {
+  if(this.state.contacts.find(contact => contact.name === name && contact.number === number)){
+    return alert(`${name} is already in contacts`) 
   };
 
-  this.setState(prevState => ({
-    contacts : [...prevState.contacts, {
+  this.setState({
+    contacts : [...this.state.contacts, {
       id:nanoid(), 
       name, 
       number}]
-  }))
+    })
 }
 
   deleteContact = id => {

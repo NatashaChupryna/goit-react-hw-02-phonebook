@@ -1,11 +1,6 @@
 import styled from '@emotion/styled';
-import { Field, Form } from 'formik';
 
-export const ContactsForm = styled(Form)`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-`
+
 export const Button = styled.button`
     width: 120px;
     padding: 10px 15px;
@@ -18,24 +13,5 @@ export const Button = styled.button`
     :hover{
         background-color :#516aed;
         color: white;} 
-
-`
-export const NameInput =styled(Field)`
-margin-left: 25px;
-
-:focus-visible{
-    box-shadow: #516aed 0px 5px 15px;
-    border: none;
-    outline: transparent;
-}
-
-`
-export const NumberInput =styled(Field)`
-margin-left: 10px;
-:focus-visible{
-    box-shadow: #516aed 0px 5px 15px;
-    border: none;
-    outline: transparent;
-}
 
 `

@@ -1,7 +1,10 @@
 // Версія з Formik
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { ContactsForm, Button, NameInput, NumberInput } from './Form.styled';
+import { Formik, Form, Field} from 'formik';
+import { Button } from './Form.styled';
+import styled from '@emotion/styled';
+
+
 
 const initialValues = {
   name: '',
@@ -10,6 +13,7 @@ const initialValues = {
 
 export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
+    console.log(values)
     onSubmit(values);
     resetForm();
   };
@@ -45,3 +49,28 @@ export const ContactForm = ({ onSubmit }) => {
     </Formik>
   );
 };
+
+const ContactsForm = styled(Form)`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`
+
+const NameInput =styled(Field)`
+margin-left: 25px;
+
+:focus-visible{
+    box-shadow: #516aed 0px 5px 15px;
+    border: none;
+    outline: transparent;
+}
+
+`
+const NumberInput =styled(Field)`
+margin-left: 10px;
+:focus-visible{
+    box-shadow: #516aed 0px 5px 15px;
+    border: none;
+    outline: transparent;
+}
+`

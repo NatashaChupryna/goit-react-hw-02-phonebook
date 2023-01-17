@@ -21,7 +21,7 @@ export const Item = styled.li`
         margin-bottom: 10px;
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         gap: 16px;
         width: 270px;
 `
