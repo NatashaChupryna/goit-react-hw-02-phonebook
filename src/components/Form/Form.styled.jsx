@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Form } from 'formik';
+import { Field, Form } from 'formik';
 
 export const ContactsForm = styled(Form)`
     display: flex;
@@ -20,7 +20,7 @@ export const Button = styled.button`
         color: white;} 
 
 `
-export const NameInput =styled.input`
+export const NameInput =styled(Field)`
 margin-left: 25px;
 
 :focus-visible{
@@ -30,7 +30,7 @@ margin-left: 25px;
 }
 
 `
-export const NumberInput =styled.input`
+export const NumberInput =styled(Field)`
 margin-left: 10px;
 :focus-visible{
     box-shadow: #516aed 0px 5px 15px;
